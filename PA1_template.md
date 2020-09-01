@@ -44,12 +44,13 @@ data
 
 ```r
 #1. Calculate the total number of steps taken per day
-
-data2<-tapply(data$steps, data$date,mean,na.rm=T)
+data2<-aggregate(steps ~ date, data, sum)
 
 #2. If you do not understand the difference between a histogram and a barplot, research the difference between them. Make a histogram of the total number of steps taken each day
 
-hist(data2,main="steps taken each day")  
+hist(data2$steps, breaks = 25,
+     main="steps taken each day",
+     xlab = "Steps Mean") 
 ```
 
 ![](PA1_template_files/figure-html/histogram-1.png)<!-- -->
@@ -57,12 +58,12 @@ hist(data2,main="steps taken each day")
 ```r
 #3. Calculate and report the mean and median of the total number of steps taken per day
 
-summary(data$steps,)[c("Median","Mean")]
+summary(data2$steps,)[c("Median","Mean")]
 ```
 
 ```
-##  Median    Mean 
-##  0.0000 37.3826
+##   Median     Mean 
+## 10765.00 10766.19
 ```
 
 ## What is the average daily activity pattern?
@@ -115,8 +116,8 @@ data4$steps[is.na(data4$steps)]<-data4$steps.mean[is.na(data4$steps)]
 data4<- data4[,-4] #deletel the steps.mean column
 
 #4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
-data4.1<-tapply(data4$steps, data4$date,mean,na.rm=T)
-hist(data4.1,
+data4.1<-aggregate(steps ~ date, data4, sum)
+hist(data4.1$steps,breaks = 25,
      main="steps taken each day, with NA filled",
      xlab = "Steps Mean")
 ```
@@ -124,12 +125,12 @@ hist(data4.1,
 ![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ```r
-summary(data4$steps,)[c("Median","Mean")]
+summary(data4.1$steps,)[c("Median","Mean")]
 ```
 
 ```
 ##   Median     Mean 
-##  0.00000 37.38069
+## 10762.00 10765.64
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?
