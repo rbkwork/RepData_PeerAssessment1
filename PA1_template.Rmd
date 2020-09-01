@@ -5,7 +5,7 @@ output:
     keep_md: true
 ---
 ```{r setoptions}
-knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, cache = TRUE)
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE)
 ```
 
 

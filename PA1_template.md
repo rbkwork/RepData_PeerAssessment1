@@ -6,7 +6,7 @@ output:
 ---
 
 ```r
-knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE, cache = TRUE)
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE)
 ```
 
 
